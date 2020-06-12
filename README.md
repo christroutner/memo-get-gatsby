@@ -7,10 +7,13 @@ A library for reading messages from the blockchain. It will scan the transaction
 # Installation
 - Install the npm package globally, in order to use it as a command line tool:
 
-`sudo npm install -g memo-get`
+`sudo npm install -g memo-get-gatsby`
 
 # Usage
-<!-- usage -->
-- `memo-get -h` - display help menu
-- `memo-get -v` - display version
-- `memo-get -a <cash address>` - Scan transaction for 'IPFS UPDATE' messages.
+```
+const MemoGet = import "memo-get-gatsby"
+memoGet = new MemoGet()
+
+const addr = `bitcoincash:qr7u857krgsvq0dwe8rzlt5rcx35r6hnmu6glavtx0`
+const msg = await memoGet.read(addr)
+```
