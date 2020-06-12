@@ -1,0 +1,53 @@
+{
+  "name": "memo-get-gatsby",
+  "version": "1.0.0",
+  "description": "Read messages from the BCH blockchain using the memo.cash protocol",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "start": "node index.js",
+    "semantic-release": "semantic-release"
+  },
+  "bin": {
+    "memo-push": "./bin/run"
+  },
+  "bugs": {
+    "url": "https://github.com/christroutner/memo-get-gatsby/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christroutner/memo-get-gatsby.git"
+  },
+  "keywords": [
+    "ipfs",
+    "javascript",
+    "gatsby",
+    "bch",
+    "bitcoin",
+    "cash",
+    "memo.cash"
+  ],
+  "author": "Chris Troutner <chris.troutner@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/christroutner/memo-get-gatsby#readme",
+  "dependencies": {
+    "@chris.troutner/bch-js": "3.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-oclif": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "mocha": "^7.0.1",
+    "nyc": "^14.1.0",
+    "prettier": "^1.18.2",
+    "semantic-release": "^16.0.0"
+  },
+  "files": [
+    "/bin",
+    "/src"
+  ],
+  "oclif": {
+    "bin": "memo-get-gatsby"
+  }
+}
