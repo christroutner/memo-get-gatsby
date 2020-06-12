@@ -1,7 +1,7 @@
-memo-get
-=========
+memo-get-gatsby
+===============
 
-A simple command-line tool for reading messages from the blockchain. It will scan the transaction history for a Bitcoin Cash (BCH) address and looking for messages published with the [Memo.cash protocol](https://memo.cash/protocol).
+A library for reading messages from the blockchain. It will scan the transaction history for a Bitcoin Cash (BCH) address and looking for messages published with the [Memo.cash protocol](https://memo.cash/protocol).
 
 <!-- toc -->
 # Installation

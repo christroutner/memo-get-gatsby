@@ -1,45 +1,16 @@
-const { Command, flags } = require("@oclif/command")
+/*
+  A Gatsby-friendly library for reading OP_RETURN messages from the BCH blockchain.
+*/
 
 const BCHJS = require("@chris.troutner/bch-js")
-const bchjs = new BCHJS()
 
 let _this
 
-class MemoGetCommand extends Command {
-  constructor(argv, config) {
-    super(argv, config)
-
+class MemoGet {
+  constructor() {
     _this = this
 
-    this.bchjs = bchjs
-  }
-
-  async run() {
-    const { flags } = this.parse(MemoGetCommand)
-
-    try {
-      const addr = flags.address
-
-      if (!addr || addr === "") throw new Error(`Please specify a BCH address.`)
-
-      // Prefact text to put in front of the message.
-      const preface = "IPFS UPDATE"
-
-      const str = await this.read(addr, preface)
-
-      if (!str) {
-        console.log(
-          `Could not find any messages that match the preface ${preface}.`
-        )
-        return
-      }
-
-      console.log(`Message found: ${str}`)
-
-      //this.log(`hello ${name} from ./src/index.js`)
-    } catch (err) {
-      console.error(err)
-    }
+    _this.bchjs = new BCHJS()
   }
 
   // Read the transaction history of the address. Looks for an OP_RETURN message
@@ -80,9 +51,13 @@ class MemoGetCommand extends Command {
           const msg = this.decodeTransaction2(asm)
           //console.log(`msg: ${msg}`)
 
+          // Generate a default preface string. Override with user provided preface.
+          let prefaceStr = "IPFS UPDATE"
+          if (preface) prefaceStr = preface
+
           if (msg) {
             // Filter the code to see if it contains an IPFS hash.
-            const hash = this.filterHash(msg, preface)
+            const hash = this.filterHash(msg, prefaceStr)
             if (hash) {
               // console.log(`Hash found! ${hash}`)
               return hash
@@ -145,21 +120,4 @@ class MemoGetCommand extends Command {
   }
 }
 
-MemoGetCommand.description = `Read OP_RETURN messages from the BCH Blockchain
-Crawls the transaction history of a Bitcoin Cash address, looking for transactions
-with an OP_RETURN message following the memo.cash protocol, which matches the
-prefix.
-`
-
-MemoGetCommand.flags = {
-  // add --version flag to show CLI version
-  version: flags.version({ char: "v" }),
-  // add --help flag to show CLI version
-  help: flags.help({ char: "h" }),
-  address: flags.string({
-    char: "a",
-    description: "Bitcoin Cash address to check"
-  })
-}
-
-module.exports = MemoGetCommand
+module.exports = MemoGet

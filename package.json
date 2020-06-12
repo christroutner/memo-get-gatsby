@@ -4,9 +4,10 @@
   "description": "Read messages from the BCH blockchain using the memo.cash protocol",
   "main": "src/index.js",
   "scripts": {
-    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "test": "nyc mocha test/unit/",
     "start": "node index.js",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "test:integration": "mocha --timeout=30000 test/integration/"
   },
   "bin": {
     "memo-push": "./bin/run"
