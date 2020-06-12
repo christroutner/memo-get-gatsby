@@ -45,10 +45,6 @@
     "semantic-release": "^16.0.0"
   },
   "files": [
-    "/bin",
     "/src"
-  ],
-  "oclif": {
-    "bin": "memo-get-gatsby"
-  }
+  ]
 }
