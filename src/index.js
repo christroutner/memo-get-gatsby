@@ -12,10 +12,13 @@ class MemoGet {
 
     // bch-js options.
     const bchjsOptions = {}
-    if (advancedOptions.restURL) bchjsOptions.restURL = advancedOptions.restURL
+    if (advancedOptions) {
+      if (advancedOptions.restURL)
+        bchjsOptions.restURL = advancedOptions.restURL
 
-    if (advancedOptions.apiToken)
-      bchjsOptions.apiToken = advancedOptions.apiToken
+      if (advancedOptions.apiToken)
+        bchjsOptions.apiToken = advancedOptions.apiToken
+    }
 
     _this.bchjs = new BCHJS(bchjsOptions)
   }
