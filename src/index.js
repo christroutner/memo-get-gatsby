@@ -7,10 +7,17 @@ const BCHJS = require("@chris.troutner/bch-js")
 let _this
 
 class MemoGet {
-  constructor() {
+  constructor(advancedOptions) {
     _this = this
 
-    _this.bchjs = new BCHJS()
+    // bch-js options.
+    const bchjsOptions = {}
+    if (advancedOptions.restURL) bchjsOptions.restURL = advancedOptions.restURL
+
+    if (advancedOptions.apiToken)
+      bchjsOptions.apiToken = advancedOptions.apiToken
+
+    _this.bchjs = new BCHJS(bchjsOptions)
   }
 
   // Read the transaction history of the address. Looks for an OP_RETURN message
